@@ -1,3 +1,12 @@
+type Item = {
+  title: string
+  url: string
+  author: string
+  num_comments: number
+  points: number
+  objectID: number
+}
+
 const list = [
   {
   title: 'React',
@@ -31,16 +40,31 @@ function App() {
   )
 }
 
+function Item({objectID, title, url, author, num_comments, points}: Item) {
+  return (
+    <li key={objectID}>
+      <span>{title}</span>
+      <span><a href={url} /></span>
+      <span>{author}</span>
+      <span>{num_comments}</span>
+      <span>{points}</span>
+    </li>
+  )
+}
+
 function List() {
  return (
   <ul>
-    {list.map((item) =>
-      <li key={item.objectID}>{item.title}
-        <span><a href={item.url} /></span>
-        <span>{item.author}</span>
-        <span>{item.num_comments}</span>
-        <span>{item.points}</span>
-      </li>
+    {list.map((item) => (
+      <Item
+        objectID={item.objectID}
+        title={item.title}
+        url={item.url}
+        author={item.author}
+        num_comments={item.num_comments}
+        points={item.points}
+      />
+    )
     )}
   </ul>
  )
