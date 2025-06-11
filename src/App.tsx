@@ -1,13 +1,13 @@
-// type Item = {
-//   title: string
-//   url: string
-//   author: string
-//   num_comments: number
-//   points: number
-//   objectID: number
-// }
+type Item = {
+  title: string
+  url: string
+  author: string
+  num_comments: number
+  points: number
+  objectID: number
+}
 
-const list = [
+const list1 = [
   {
   title: 'React',
   url: 'https://react.dev/',
@@ -26,6 +26,25 @@ const list = [
   },
   ];
 
+  const list2 = [
+    {
+    title: 'Python',
+    url: 'https://python.dev/',
+    author: 'Bob Man',
+    num_comments: 4,
+    points: 5,
+    objectID: 2,
+    },
+    {
+    title: 'Ruby',
+    url: 'https://ruby.org/',
+    author: 'DHH',
+    num_comments: 7,
+    points: 6,
+    objectID: 3,
+    },
+    ];
+
 function App() {
   return (
     <div>
@@ -35,7 +54,8 @@ function App() {
 
       <hr/>
 
-      <List />
+      <List list={list1} />
+      <List list={list2} />
     </div>
   )
 }
@@ -62,7 +82,10 @@ function Item({item}: ItemProps) {
   )
 }
 
-function List() {
+type ListProps = {
+  list: Item[]
+}
+function List({list}: ListProps) {
  return (
   <ul>
     {list.map((item) => (
