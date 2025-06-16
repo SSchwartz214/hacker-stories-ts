@@ -94,11 +94,18 @@ const List = ({list}: ListProps) => (
 )
 
 
-const Search = () => (
+const Search = () => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event)
+    console.log(event.target.value)
+  }
+
+ return (
   <div>
     <label htmlFor='search'>Search: </label>
-    <input type="text" id="search" />
+    <input type="text" id="search" onChange={handleChange} />
   </div>
-)
+ )
+}
 
 export default App
