@@ -24,7 +24,7 @@ const list1 = [
   points: 5,
   objectID: 1,
   },
-  ];
+];
 
   const list2 = [
     {
@@ -43,9 +43,9 @@ const list1 = [
     points: 6,
     objectID: 3,
     },
-    ];
+  ];
 
-function App() {
+const App = () => {
   return (
     <div>
       <h1>My Hacker Stories</h1>
@@ -70,39 +70,35 @@ type ItemProps = {
     objectID: number
   }
 }
-function Item({item}: ItemProps) {
-  return (
-    <li>
-      <span>{item.title}</span>
-      <span><a href={item.url} /></span>
-      <span>{item.author}</span>
-      <span>{item.num_comments}</span>
-      <span>{item.points}</span>
-    </li>
-  )
-}
+const Item = ({item}: ItemProps) => (
+  <li>
+    <span>{item.title}</span>
+    <span><a href={item.url} /></span>
+    <span>{item.author}</span>
+    <span>{item.num_comments}</span>
+    <span>{item.points}</span>
+  </li>
+)
 
 type ListProps = {
   list: Item[]
 }
-function List({list}: ListProps) {
- return (
-  <ul>
-    {list.map((item) => (
-      <Item key={item.objectID} item={item}/>
-    )
-    )}
-  </ul>
- )
-}
 
-function Search() {
-  return (
-    <div>
-      <label htmlFor='search'>Search: </label>
-      <input type="text" id="search" />
-    </div>
-  )
-}
+const List = ({list}: ListProps) => (
+    <ul>
+      {list.map((item) => (
+        <Item key={item.objectID} item={item}/>
+      )
+      )}
+    </ul>
+)
+
+
+const Search = () => (
+  <div>
+    <label htmlFor='search'>Search: </label>
+    <input type="text" id="search" />
+  </div>
+)
 
 export default App
