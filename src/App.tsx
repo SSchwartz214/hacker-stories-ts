@@ -55,14 +55,12 @@ type SearchProps = {
   onSearch: (event: React.ChangeEvent<HTMLInputElement>) => void
   search: string
 }
-const Search = ({onSearch, search}: SearchProps) => {
- return (
+const Search = ({onSearch, search}: SearchProps) => (
   <div>
     <label htmlFor='search'>Search: </label>
     <input type="text" id="search" onChange={onSearch} value={search} />
   </div>
- )
-}
+)
 
 type ListProps = {
   list: Story[]
@@ -71,8 +69,8 @@ type ListProps = {
 const List = ({list}: ListProps) => {
   return (
     <ul>
-      {list.map((item) => (
-        <Item key={item.objectID} item={item}/>
+      {list.map(({ objectID, ...item}) => (
+        <Item key={objectID} {...item}/>
       )
       )}
     </ul>
@@ -80,18 +78,22 @@ const List = ({list}: ListProps) => {
 }
 
 type ItemProps = {
-  item: Story
+  title: string
+  url: string
+  author: string
+  num_comments: number
+  points: number
 }
 
-const Item = ({item}: ItemProps) => {
+const Item = ({title, url, author, num_comments, points}: ItemProps) => {
   return (
     <li>
       <span>
-        <a href={item.url}> {item.title}</a>
+        <a href={url}> {title}</a>
       </span>
-      <span>{item.author}</span>
-      <span>{item.num_comments}</span>
-      <span>{item.points}</span>
+      <span>{author}</span>
+      <span>{num_comments}</span>
+      <span>{points}</span>
     </li>
   )
 }
