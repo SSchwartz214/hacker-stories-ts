@@ -9,6 +9,15 @@ type Story = {
   points: number
 }
 
+const useStorageState = (key: string, initialState: string) => {
+  const [value, setValue] = React.useState(localStorage.getItem(key) ?? initialState)
+
+  React.useEffect(() => {
+    localStorage.setItem(key, value)
+  }, [value, key])
+
+  return [value, setValue] as const
+}
 
 const App = () => {
   const stories = [
@@ -30,17 +39,13 @@ const App = () => {
     },
   ];
 
-  const [searchTerm, setSearchTerm] = React.useState(localStorage.getItem('search') ?? 'React')
+  const [searchTerm, setSearchTerm] = useStorageState('search', 'React')
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value)
+   setSearchTerm(event.target.value)
   }
 
   const searchedStories =  stories.filter((story) => (story.title.toLowerCase().includes(searchTerm.toLowerCase())))
-
-  React.useEffect(() => {
-    localStorage.setItem('search', searchTerm)
-  }, [searchTerm])
 
   return (
     <div>
