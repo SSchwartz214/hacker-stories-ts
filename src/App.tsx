@@ -51,7 +51,12 @@ const App = () => {
     <div>
       <h1>My Hacker Stories</h1>
 
-      <Search search={searchTerm} onSearch={handleSearch}/>
+      <InputWithLabel
+        id='search'
+        label='Search'
+        value={searchTerm}
+        onInputChange={handleSearch}
+      />
 
       <hr/>
 
@@ -60,14 +65,18 @@ const App = () => {
   )
 }
 
-type SearchProps = {
-  onSearch: (event: React.ChangeEvent<HTMLInputElement>) => void
-  search: string
+type InputWithLabelProps = {
+  id: string
+  label: string
+  type?: string
+  onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  value: string
 }
-const Search = ({onSearch, search}: SearchProps) => (
+const InputWithLabel = ({id, label, type = 'text', onInputChange, value}: InputWithLabelProps) => (
   <>
-    <label htmlFor='search'>Search: </label>
-    <input type="text" id="search" onChange={onSearch} value={search} />
+    <label htmlFor={id}>{label}</label>
+    &nbsp;
+    <input type={type} id={id} onChange={onInputChange} value={value} />
   </>
 )
 
