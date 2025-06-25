@@ -65,10 +65,10 @@ type SearchProps = {
   search: string
 }
 const Search = ({onSearch, search}: SearchProps) => (
-  <div>
+  <>
     <label htmlFor='search'>Search: </label>
     <input type="text" id="search" onChange={onSearch} value={search} />
-  </div>
+  </>
 )
 
 type ListProps = {
